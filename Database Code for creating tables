@@ -1,0 +1,46 @@
+SE CLASSPROJECT1;
+
+drop table if exists dbo.Characteristics;
+
+Create table dbo.Characteristics
+(
+	FlavorID		 NCHAR(10)		null,	--*FK
+	NicLevel		 NCHAR(10)		null,
+	Price			 Decimal(18,0)	null,
+	BottleSize		 NCHAR(10)		null,
+	CharacteristicID NCHAR(10)	not null, --*PK
+	primary key (CharacteristicID),
+	--constraint fk_FlavorID foreign key(FlavorID) references Flavors(FlavorID)
+);
+
+drop table if exists dbo.Flavors;
+
+Create table dbo.Flavors
+(
+	JuiceID		NCHAR(5)		null,		--*FK
+	Flavor		NVARCHAR(30)	null,
+	FlavorID	NCHAR(10)		not null,	--*PK
+	primary key (FlavorID)
+);
+
+drop table if exists dbo.Juices;
+
+Create table dbo.Juices
+(
+	JuiceName	NVARCHAR(25)	null,
+	JuiceID		NCHAR(5)		not null,	--*PK
+	Brand		NVARCHAR(25)	null,
+	primary key (JuiceID)
+);
+
+drop table if exists dbo.Review
+
+Create table dbo.Review
+(
+	Rating			NCHAR(10)		null,
+	UserName		NVARCHAR(20)	not null,	--*PK
+	DateOfReview	DATETIME2(7)	not null,
+	UserReview		NVARCHAR(MAX)	null,
+	JuiceID			NCHAR(5)		null,		--*FK
+	primary key (UserName)
+);

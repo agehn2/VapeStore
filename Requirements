@@ -1,0 +1,20 @@
+CLASS PROJECT REQUIRMENTS
+Gehn, Alex
+
+1.As a User, you can create an account
+2.As a user, you can take the personality quiz(when creating account, or defer until a later time)
+3.As a user, you can search thru the juices by
+	Flavor
+	Brand
+	Price
+4.As a user you can add a review for juices
+5.As a user you can view reviews theyve done in the past
+6.As a user they can view reviews by 
+	Date
+	Juice
+	Brand
+7.As a user you can save juices to your FAV to view later
+8.As a user i can change between user reviews and website review
+9.As an admin i can review/delete reviews that are not okay
+10.As an admin i can add juices/take away
+11.As an admin i can do website reviews for he juices

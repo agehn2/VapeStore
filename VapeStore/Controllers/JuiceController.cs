@@ -13,7 +13,7 @@ namespace VapeStore.Controllers
         // GET: Juice/Random
         public ActionResult Random()
         {
-            var juice = new Juice() { Brand = "Excision", Id = 1 };
+            var juice = new Juice() { Brand = "Excision", JuiceID = "1" };
             var viewResult = new ViewResult();
             
             return View(juice);

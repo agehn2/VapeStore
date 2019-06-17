@@ -13,7 +13,9 @@ namespace VapeStore.Controllers
         // GET: Juice/Random
         public ActionResult Random()
         {
-            var juice = new Juice() {Brand = "Excision", Id = 1};
+            var juice = new Juice() { Brand = "Excision", Id = 1 };
+            var viewResult = new ViewResult();
+            
             return View(juice);
         }
 
@@ -30,6 +32,7 @@ namespace VapeStore.Controllers
         //        sortBy = "Name";
         //    return Content(string.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
         //}
+        [Route("Juice/Review/{year}/{month:regex(\\d{4})}")]
         public ActionResult ByReviewDate(int year, int month)
         {
             return Content(year + "/" + month);

@@ -12,22 +12,20 @@ namespace VapeStore.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Juice
+    public partial class Flavor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Juice()
+        public Flavor()
         {
-            this.Flavors = new HashSet<Flavor>();
-            this.Reviews = new HashSet<Review>();
+            this.Characteristics = new HashSet<Characteristic>();
         }
     
-        public string JuiceName { get; set; }
         public string JuiceID { get; set; }
-        public string Brand { get; set; }
+        public string Flavor1 { get; set; }
+        public string FlavorID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Flavor> Flavors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Characteristic> Characteristics { get; set; }
+        public virtual Juice Juice { get; set; }
     }
 }

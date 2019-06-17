@@ -13,12 +13,8 @@ namespace VapeStore
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "JuicesByBrand",
-                "Juice/Review/{year}/{month}",
-                new { controller = "Juice", action = "ByReviewDate" },
-                new { year = @"\d{4}", month = @"\d{2}"});
-
+            routes.MapMvcAttributeRoutes();
+            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

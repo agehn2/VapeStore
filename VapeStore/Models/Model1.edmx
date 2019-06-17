@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ClassProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Characteristics">
+          <Key>
+            <PropertyRef Name="CharacteristicID" />
+          </Key>
+          <Property Name="FlavorID" Type="nchar" MaxLength="10" />
+          <Property Name="NicLevel" Type="nchar" MaxLength="10" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BottleSize" Type="nchar" MaxLength="10" />
+          <Property Name="CharacteristicID" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flavors">
+          <Key>
+            <PropertyRef Name="FlavorID" />
+          </Key>
+          <Property Name="JuiceID" Type="nchar" MaxLength="5" />
+          <Property Name="Flavor" Type="nvarchar" MaxLength="20" />
+          <Property Name="FlavorID" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Juices">
+          <Key>
+            <PropertyRef Name="JuiceID" />
+          </Key>
+          <Property Name="JuiceName" Type="nvarchar" MaxLength="25" />
+          <Property Name="JuiceID" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="Rating" Type="nchar" MaxLength="10" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateOfReview" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserReview" Type="nvarchar(max)" />
+          <Property Name="JuiceID" Type="nchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Characteristics_Flavors">
+          <End Role="Flavors" Type="Self.Flavors" Multiplicity="0..1" />
+          <End Role="Characteristics" Type="Self.Characteristics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flavors">
+              <PropertyRef Name="FlavorID" />
+            </Principal>
+            <Dependent Role="Characteristics">
+              <PropertyRef Name="FlavorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flavors_Juices">
+          <End Role="Juices" Type="Self.Juices" Multiplicity="0..1" />
+          <End Role="Flavors" Type="Self.Flavors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juices">
+              <PropertyRef Name="JuiceID" />
+            </Principal>
+            <Dependent Role="Flavors">
+              <PropertyRef Name="JuiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Juices">
+          <End Role="Juices" Type="Self.Juices" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juices">
+              <PropertyRef Name="JuiceID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="JuiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClassProjectModelStoreContainer">
+          <EntitySet Name="Characteristics" EntityType="Self.Characteristics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flavors" EntityType="Self.Flavors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Juices" EntityType="Self.Juices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Characteristics_Flavors" Association="Self.FK_Characteristics_Flavors">
+            <End Role="Flavors" EntitySet="Flavors" />
+            <End Role="Characteristics" EntitySet="Characteristics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flavors_Juices" Association="Self.FK_Flavors_Juices">
+            <End Role="Juices" EntitySet="Juices" />
+            <End Role="Flavors" EntitySet="Flavors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Juices" Association="Self.FK_Review_Juices">
+            <End Role="Juices" EntitySet="Juices" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClassProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Characteristic">
+          <Key>
+            <PropertyRef Name="CharacteristicID" />
+          </Key>
+          <Property Name="FlavorID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NicLevel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BottleSize" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CharacteristicID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Flavor" Relationship="Self.FK_Characteristics_Flavors" FromRole="Characteristics" ToRole="Flavors" />
+        </EntityType>
+        <EntityType Name="Flavor">
+          <Key>
+            <PropertyRef Name="FlavorID" />
+          </Key>
+          <Property Name="JuiceID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="Flavor1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FlavorID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Characteristics" Relationship="Self.FK_Characteristics_Flavors" FromRole="Flavors" ToRole="Characteristics" />
+          <NavigationProperty Name="Juice" Relationship="Self.FK_Flavors_Juices" FromRole="Flavors" ToRole="Juices" />
+        </EntityType>
+        <EntityType Name="Juice">
+          <Key>
+            <PropertyRef Name="JuiceID" />
+          </Key>
+          <Property Name="JuiceName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="JuiceID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Flavors" Relationship="Self.FK_Flavors_Juices" FromRole="Juices" ToRole="Flavors" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Juices" FromRole="Juices" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="Rating" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfReview" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserReview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JuiceID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Juice" Relationship="Self.FK_Review_Juices" FromRole="Review" ToRole="Juices" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Characteristics_Flavors">
+          <End Role="Flavors" Type="Self.Flavor" Multiplicity="0..1" />
+          <End Role="Characteristics" Type="Self.Characteristic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flavors">
+              <PropertyRef Name="FlavorID" />
+            </Principal>
+            <Dependent Role="Characteristics">
+              <PropertyRef Name="FlavorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flavors_Juices">
+          <End Role="Juices" Type="Self.Juice" Multiplicity="0..1" />
+          <End Role="Flavors" Type="Self.Flavor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juices">
+              <PropertyRef Name="JuiceID" />
+            </Principal>
+            <Dependent Role="Flavors">
+              <PropertyRef Name="JuiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Juices">
+          <End Role="Juices" Type="Self.Juice" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juices">
+              <PropertyRef Name="JuiceID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="JuiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClassProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Characteristics" EntityType="Self.Characteristic" />
+          <EntitySet Name="Flavors" EntityType="Self.Flavor" />
+          <EntitySet Name="Juices" EntityType="Self.Juice" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Characteristics_Flavors" Association="Self.FK_Characteristics_Flavors">
+            <End Role="Flavors" EntitySet="Flavors" />
+            <End Role="Characteristics" EntitySet="Characteristics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flavors_Juices" Association="Self.FK_Flavors_Juices">
+            <End Role="Juices" EntitySet="Juices" />
+            <End Role="Flavors" EntitySet="Flavors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Juices" Association="Self.FK_Review_Juices">
+            <End Role="Juices" EntitySet="Juices" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ClassProjectModelStoreContainer" CdmEntityContainer="ClassProjectEntities">
+          <EntitySetMapping Name="Characteristics">
+            <EntityTypeMapping TypeName="ClassProjectModel.Characteristic">
+              <MappingFragment StoreEntitySet="Characteristics">
+                <ScalarProperty Name="FlavorID" ColumnName="FlavorID" />
+                <ScalarProperty Name="NicLevel" ColumnName="NicLevel" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BottleSize" ColumnName="BottleSize" />
+                <ScalarProperty Name="CharacteristicID" ColumnName="CharacteristicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flavors">
+            <EntityTypeMapping TypeName="ClassProjectModel.Flavor">
+              <MappingFragment StoreEntitySet="Flavors">
+                <ScalarProperty Name="JuiceID" ColumnName="JuiceID" />
+                <ScalarProperty Name="Flavor1" ColumnName="Flavor" />
+                <ScalarProperty Name="FlavorID" ColumnName="FlavorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Juices">
+            <EntityTypeMapping TypeName="ClassProjectModel.Juice">
+              <MappingFragment StoreEntitySet="Juices">
+                <ScalarProperty Name="JuiceName" ColumnName="JuiceName" />
+                <ScalarProperty Name="JuiceID" ColumnName="JuiceID" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="ClassProjectModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateOfReview" ColumnName="DateOfReview" />
+                <ScalarProperty Name="UserReview" ColumnName="UserReview" />
+                <ScalarProperty Name="JuiceID" ColumnName="JuiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ClassProjectModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

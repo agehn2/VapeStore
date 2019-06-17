@@ -1,0 +1,11 @@
+
+use CLASSPROJECT1;
+
+alter table Characteristics
+ADD FOREIGN KEY (FlavorID) REFERENCES Flavors(flavorID);
+
+alter table Flavors
+ADD FOREIGN KEY (JuiceID) REFERENCES Juices(JuiceID);
+
+alter table Review
+ADD FOREIGN KEY (JuiceID) REFERENCES Juices(JuiceID);

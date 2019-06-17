@@ -20,9 +20,9 @@ namespace VapeStore.Models
             this.Characteristics = new HashSet<Characteristic>();
         }
     
-        public string JuiceID { get; set; }
+        public Nullable<int> JuiceID { get; set; }
         public string Flavor1 { get; set; }
-        public string FlavorID { get; set; }
+        public int FlavorID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Characteristic> Characteristics { get; set; }

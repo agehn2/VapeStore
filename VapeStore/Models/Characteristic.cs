@@ -14,11 +14,11 @@ namespace VapeStore.Models
     
     public partial class Characteristic
     {
-        public string FlavorID { get; set; }
+        public Nullable<int> FlavorID { get; set; }
         public string NicLevel { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string BottleSize { get; set; }
-        public string CharacteristicID { get; set; }
+        public int CharacteristicID { get; set; }
     
         public virtual Flavor Flavor { get; set; }
     }

@@ -22,7 +22,7 @@ namespace VapeStore.Models
         }
     
         public string JuiceName { get; set; }
-        public string JuiceID { get; set; }
+        public int JuiceID { get; set; }
         public string Brand { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

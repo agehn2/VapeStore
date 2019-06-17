@@ -18,7 +18,7 @@ namespace VapeStore.Models
         public string UserName { get; set; }
         public System.DateTime DateOfReview { get; set; }
         public string UserReview { get; set; }
-        public string JuiceID { get; set; }
+        public Nullable<int> JuiceID { get; set; }
     
         public virtual Juice Juice { get; set; }
     }

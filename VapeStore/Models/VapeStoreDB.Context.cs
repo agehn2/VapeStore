@@ -13,10 +13,10 @@ namespace VapeStore.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ClassProjectEntities : DbContext
+    public partial class VapeStoreDBEntities1 : DbContext
     {
-        public ClassProjectEntities()
-            : base("name=ClassProjectEntities")
+        public VapeStoreDBEntities1()
+            : base("name=VapeStoreDBEntities1")
         {
         }
     
@@ -29,6 +29,5 @@ namespace VapeStore.Models
         public virtual DbSet<Flavor> Flavors { get; set; }
         public virtual DbSet<Juice> Juices { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

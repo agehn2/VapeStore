@@ -10,112 +10,107 @@ using VapeStore.Models;
 
 namespace VapeStore.Controllers
 {
-    public class ReviewsController : Controller
+    public class JuicesController : Controller
     {
         private VapeStoreDBEntities db = new VapeStoreDBEntities();
 
-        // GET: Reviews
+        // GET: Juices
         public ActionResult Index()
         {
-            var reviews = db.Reviews.Include(r => r.Juice);
-            return View(reviews.ToList());
+            return View(db.Juices.ToList());
         }
 
-        // GET: Reviews/Details/5
-        public ActionResult Details(string id)
+        // GET: Juices/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
+            Juice juice = db.Juices.Find(id);
+            if (juice == null)
             {
                 return HttpNotFound();
             }
-            return View(review);
+            return View(juice);
         }
 
-        // GET: Reviews/Create
+        // GET: Juices/Create
         public ActionResult Create()
         {
-            ViewBag.JuiceID = new SelectList(db.Juices, "JuiceID", "JuiceName");
             return View();
         }
 
-        // POST: Reviews/Create
+        // POST: Juices/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Rating,UserName,DateOfReview,UserReview,JuiceID")] Review review)
+        public ActionResult Create([Bind(Include = "JuiceName,JuiceID,Brand")] Juice juice)
         {
             if (ModelState.IsValid)
             {
-                db.Reviews.Add(review);
+                db.Juices.Add(juice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.JuiceID = new SelectList(db.Juices, "JuiceID", "JuiceName", review.JuiceID);
-            return View(review);
+            return View(juice);
         }
 
-        // GET: Reviews/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Juices/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
+            Juice juice = db.Juices.Find(id);
+            if (juice == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.JuiceID = new SelectList(db.Juices, "JuiceID", "JuiceName", review.JuiceID);
-            return View(review);
+            return View(juice);
         }
 
-        // POST: Reviews/Edit/5
+        // POST: Juices/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Rating,UserName,DateOfReview,UserReview,JuiceID")] Review review)
+        public ActionResult Edit([Bind(Include = "JuiceName,JuiceID,Brand")] Juice juice)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(review).State = EntityState.Modified;
+                db.Entry(juice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.JuiceID = new SelectList(db.Juices, "JuiceID", "JuiceName", review.JuiceID);
-            return View(review);
+            return View(juice);
         }
 
-        // GET: Reviews/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Juices/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
+            Juice juice = db.Juices.Find(id);
+            if (juice == null)
             {
                 return HttpNotFound();
             }
-            return View(review);
+            return View(juice);
         }
 
-        // POST: Reviews/Delete/5
+        // POST: Juices/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
+            Juice juice = db.Juices.Find(id);
+            db.Juices.Remove(juice);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

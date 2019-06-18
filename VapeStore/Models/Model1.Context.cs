@@ -13,10 +13,10 @@ namespace VapeStore.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VapeStoreDBEntities1 : DbContext
+    public partial class VapeStoreDBEntities : DbContext
     {
-        public VapeStoreDBEntities1()
-            : base("name=VapeStoreDBEntities1")
+        public VapeStoreDBEntities()
+            : base("name=VapeStoreDBEntities")
         {
         }
     

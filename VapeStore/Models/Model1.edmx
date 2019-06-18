@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VapeStoreDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="VapeStoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Characteristics">
           <Key>
             <PropertyRef Name="CharacteristicID" />
@@ -77,7 +77,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VapeStoreDBModel1StoreContainer">
+        <EntityContainer Name="VapeStoreDBModelStoreContainer">
           <EntitySet Name="Characteristics" EntityType="Self.Characteristics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Flavors" EntityType="Self.Flavors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Juices" EntityType="Self.Juices" Schema="dbo" store:Type="Tables" />
@@ -99,7 +99,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="VapeStoreDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="VapeStoreDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Characteristic">
           <Key>
             <PropertyRef Name="CharacteristicID" />
@@ -178,7 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VapeStoreDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VapeStoreDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Characteristics" EntityType="Self.Characteristic" />
           <EntitySet Name="Flavors" EntityType="Self.Flavor" />
           <EntitySet Name="Juices" EntityType="Self.Juice" />
@@ -201,9 +201,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="VapeStoreDBModel1StoreContainer" CdmEntityContainer="VapeStoreDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="VapeStoreDBModelStoreContainer" CdmEntityContainer="VapeStoreDBEntities">
           <EntitySetMapping Name="Characteristics">
-            <EntityTypeMapping TypeName="VapeStoreDBModel1.Characteristic">
+            <EntityTypeMapping TypeName="VapeStoreDBModel.Characteristic">
               <MappingFragment StoreEntitySet="Characteristics">
                 <ScalarProperty Name="FlavorID" ColumnName="FlavorID" />
                 <ScalarProperty Name="NicLevel" ColumnName="NicLevel" />
@@ -214,7 +214,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Flavors">
-            <EntityTypeMapping TypeName="VapeStoreDBModel1.Flavor">
+            <EntityTypeMapping TypeName="VapeStoreDBModel.Flavor">
               <MappingFragment StoreEntitySet="Flavors">
                 <ScalarProperty Name="JuiceID" ColumnName="JuiceID" />
                 <ScalarProperty Name="Flavor1" ColumnName="Flavor" />
@@ -223,7 +223,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Juices">
-            <EntityTypeMapping TypeName="VapeStoreDBModel1.Juice">
+            <EntityTypeMapping TypeName="VapeStoreDBModel.Juice">
               <MappingFragment StoreEntitySet="Juices">
                 <ScalarProperty Name="JuiceName" ColumnName="JuiceName" />
                 <ScalarProperty Name="JuiceID" ColumnName="JuiceID" />
@@ -232,7 +232,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="VapeStoreDBModel1.Review">
+            <EntityTypeMapping TypeName="VapeStoreDBModel.Review">
               <MappingFragment StoreEntitySet="Review">
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

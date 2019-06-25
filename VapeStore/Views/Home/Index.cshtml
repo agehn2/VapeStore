@@ -1,30 +1,27 @@
-﻿@{
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>The Vape Review</h1>
-    <p class="lead">Discover your flavors, and help other find new choices</p>
-</div>
-
-<style>
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
-
-<div class="row">
-    <div class="col-md-4">
-        <img src="\Content\vapejuice.jfif" style="width:50%"; />
-        <h2>Getting started</h2>
-        <nav>
-            <ul>
-                <li><a href="#">Reviews</a></li>
-                <li><a href="#">Flavors</a></li>
-                <li><a href="#">Brands</a></li>
-            </ul>
-        </nav>
+<body background="~/Content/sky.jpg">
+    <div style= "background:darkblue" class="jumbotron">
+        <h1><font color="white">The Vape Review</font></h1>
+        <p class="lead"><font color="white">Discover your flavors, and help other find new choices</font></p>
     </div>
-</div>
+
+    <div class="row">
+        <img src="~/Content/Vapejuice Wild.jpg" align="middle">
+        <img src="~/Content/vapejice row.jpg" align="right" width="200">
+        <div class="col-md-4">
+            <
+            <h2 style="color:Black;">Navigation</h2>
+            <nav>
+                <ul>
+                    <li><a href="~/Views/Reviews/Index"><h2 style="color:Black;">Reviews</h2></a></li>
+                    <li><a href="#"><h2 style="color:Black;">Flavors</h2></a></li>
+                    <li><a href="#"><h2 style="color:Black;">Brands</h2></a></li>
+                </ul>
+
+            </nav>
+        </div>
+    </div>
+</body>
